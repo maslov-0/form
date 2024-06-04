@@ -8837,17 +8837,17 @@ function zr(t) {
       isFormSubmited = true;
       
       const loaderContainer = document.createElement('div');
-      
-      loaderContainer.style = 'width: 100vw; height: 100vh; position: absolute; top: 0; left: 0; display: flex; justify-content: center; align-items: center; z-index: 9999; backdrop-filter: brightness(40%);'
-      
+
+      loaderContainer.style = `width: 100vw; height: 100vh; position: fixed; top: 0; left: 0; display: flex; justify-content: center; align-items: center; z-index: 9999; backdrop-filter: brightness(40%);`
+
           const svgNamespace = "http://www.w3.org/2000/svg";
 
-      
+
        const svg = document.createElementNS(svgNamespace, "svg");
        svg.setAttribute("xmlns", svgNamespace);
        svg.setAttribute("viewBox", "0 0 200 200");
        svg.setAttribute('width', "100");
-       
+
     const createCircle = (cx, delay) => {
         const circle = document.createElementNS(svgNamespace, "circle");
         circle.setAttribute("fill", "#FFF");
@@ -8873,13 +8873,21 @@ function zr(t) {
     svg.appendChild(createCircle("40", "-.4s"));
     svg.appendChild(createCircle("100", "-.2s"));
     svg.appendChild(createCircle("160", "0s"));
-      
+
       svg.width = '100';
-      
+
       loaderContainer.appendChild(svg);
-      
+
       document.body.appendChild(loaderContainer);
       document.body.style = 'overflow: hidden;'
+ function blockScroll(event) {
+            event.preventDefault();
+            event.stopPropagation();
+        }
+
+        window.addEventListener('scroll', blockScroll, { passive: false });
+        window.addEventListener('wheel', blockScroll, { passive: false });
+        window.addEventListener('touchmove', blockScroll, { passive: false });
       
     (e.value = s.getNumber().replace("+", "")),
       Jt || (c.preventDefault(), c.stopPropagation());
